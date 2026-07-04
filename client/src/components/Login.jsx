@@ -15,11 +15,11 @@ function Login({ onJoin, connectionStatus, connectionError, socketUrl }) {
       <div className="card">
         <h1 className="auth-title">Welcome to Real-Time Chat</h1>
         <p className="auth-subtitle">Choose a username and room to join the conversation.</p>
-        <div className={`status-banner ${connectionError ? 'error' : ''}`}>
-          <span>{connectionStatus}</span>
-          {socketUrl && <small>{socketUrl}</small>}
-          {connectionError && <small>{connectionError}</small>}
-        </div>
+        {connectionError && (
+          <div className="status-banner error">
+            <span>{connectionError}</span>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
