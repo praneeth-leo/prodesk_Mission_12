@@ -9,12 +9,35 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const port = process.env.PORT || 5000;
+
+function normalizeOrigin(origin) {
+  const value = origin?.trim();
+
+  if (!value) return '';
+
+  try {
+    return new URL(value).origin;
+  } catch {
+    return value.replace(/\/+$/, '');
+  }
+}
+
 const allowedOrigins = process.env.CORS_ORIGIN
-  ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim()).filter(Boolean)
+  ? process.env.CORS_ORIGIN.split(',').map(normalizeOrigin).filter(Boolean)
   : true;
+const corsOrigin = allowedOrigins === true
+  ? true
+  : (origin, callback) => {
+      if (!origin || allowedOrigins.includes(normalizeOrigin(origin))) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error('Not allowed by CORS'));
+    };
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: corsOrigin,
   methods: ['GET', 'POST']
 }));
 app.use(express.json());
@@ -29,7 +52,7 @@ app.get('/health', (req, res) => {
 
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
+    origin: corsOrigin,
     methods: ['GET', 'POST']
   }
 });
