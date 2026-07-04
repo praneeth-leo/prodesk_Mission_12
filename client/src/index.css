@@ -83,6 +83,33 @@ textarea {
   opacity: 0.9;
 }
 
+.status-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 14px;
+  background: rgba(15, 22, 16, 0.82);
+  color: #f7f1d0;
+}
+
+.status-banner.compact {
+  margin: 14px 0 0;
+}
+
+.status-banner.error {
+  border-color: rgba(255, 111, 111, 0.45);
+  color: #ffd7d7;
+}
+
+.status-banner small {
+  color: inherit;
+  opacity: 0.78;
+  overflow-wrap: anywhere;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;

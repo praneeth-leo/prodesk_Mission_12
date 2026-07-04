@@ -3,7 +3,7 @@ import Message from './Message';
 import TypingIndicator from './TypingIndicator';
 import socket from '../socket';
 
-function Chat({ username, room }) {
+function Chat({ username, room, connectionStatus, connectionError }) {
   const [messages, setMessages] = useState([]);
   const [draft, setDraft] = useState('');
   const [typingUser, setTypingUser] = useState('');
@@ -89,8 +89,9 @@ function Chat({ username, room }) {
           <p>Chatting as {username}</p>
           <div className="meta">
             <span>Realtime chat</span>
-            <span>Secure room messaging</span>
+            <span>{connectionStatus}</span>
           </div>
+          {connectionError && <div className="status-banner error compact">{connectionError}</div>}
         </div>
 
         <div className="chat-body">

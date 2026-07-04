@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Login({ onJoin }) {
+function Login({ onJoin, connectionStatus, connectionError, socketUrl }) {
   const [username, setUsername] = useState('');
   const [room, setRoom] = useState('General');
 
@@ -15,6 +15,11 @@ function Login({ onJoin }) {
       <div className="card">
         <h1 className="auth-title">Welcome to Real-Time Chat</h1>
         <p className="auth-subtitle">Choose a username and room to join the conversation.</p>
+        <div className={`status-banner ${connectionError ? 'error' : ''}`}>
+          <span>{connectionStatus}</span>
+          {socketUrl && <small>{socketUrl}</small>}
+          {connectionError && <small>{connectionError}</small>}
+        </div>
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
