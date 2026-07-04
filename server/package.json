@@ -1,0 +1,16 @@
+{
+  "name": "realtime-chat-server",
+  "version": "1.0.0",
+  "description": "Realtime chat backend with Express and Socket.io",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv": "^16.4.1",
+    "express": "^4.21.2",
+    "realtime-chat": "file:..",
+    "socket.io": "^4.1.0"
+  }
+}
