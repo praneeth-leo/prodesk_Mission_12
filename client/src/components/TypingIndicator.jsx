@@ -1,3 +1,5 @@
+import React from 'react';
+
 function TypingIndicator({ typingUser }) {
   if (!typingUser) return null;
 

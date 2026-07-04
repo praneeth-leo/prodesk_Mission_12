@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Login from './components/Login';
 import Chat from './components/Chat';
 import socket from './socket';

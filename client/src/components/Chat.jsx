@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Message from './Message';
 import TypingIndicator from './TypingIndicator';
 import socket from '../socket';

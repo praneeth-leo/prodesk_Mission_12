@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Message({ message, username }) {
   const isOwn = message.username === username;
 
